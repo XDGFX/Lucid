@@ -140,12 +140,8 @@ The easiest way to install Lucid is through the official release.
 The release is signed with a Developer ID and notarised by Apple, so it opens without a
 Gatekeeper warning.
 
-Also available from [GitHub Releases](https://github.com/ManasvinYadav/Lucid/releases/latest)
-and Homebrew:
-
-```bash
-brew install --cask manasvinyadav/lucid/lucid
-```
+The signed, notarised DMG is available only from Gumroad. To use Lucid for free,
+[build it from source](#build-from-source).
 
 ## Requirements
 
@@ -187,9 +183,13 @@ time.
 Lucid's source code is **MIT-licensed** and lives in this repository. You can read it,
 build it and modify it.
 
-The **[Gumroad release](https://manasvinyadav.gumroad.com/l/kasww)** is the convenient
-way to get it: a signed, notarised build of this same source, ready to install. Buying it
-also supports the project.
+| | |
+|---|---|
+| **Source code** | MIT-licensed, in this repository. Free to build and use. |
+| **Signed, notarised release** | A paid download on [Gumroad](https://manasvinyadav.gumroad.com/l/kasww). It's a build of this same source, signed with a Developer ID and notarised by Apple, ready to install. Buying it supports the project. |
+| **GitHub Releases** | Release notes and source archives only, with no prebuilt app. |
+
+The Gumroad build has no features the source lacks.
 
 Third-party assets keep their own licences. The wordmark font is Borel (SIL Open Font
 License 1.1) and the demo film's music is CC BY 4.0. See [Credits](#credits).
@@ -197,33 +197,41 @@ License 1.1) and the demo film's music is CC BY 4.0. See [Credits](#credits).
 ## FAQ
 
 **Does Lucid work with Claude Code?**
+
 Yes, and it's one of the three integrations verified against a real install. Install its
 hooks from **Settings → Agents**.
 
 **Does Lucid keep my Mac awake all the time?**
+
 No. In Auto mode it holds the Mac awake only while an agent session is working. Always
 Awake mode exists if you want it, and Off turns it off.
 
 **What happens when the agent becomes idle?**
+
 When the last working session goes idle, a grace period starts (45 s by default,
 adjustable from 10 s to 5 min) so a quick follow-up prompt doesn't toggle the lock. When it
 runs out, Lucid releases everything. If the lid is shut and no external display is
 attached, Lucid then puts the Mac to sleep.
 
 **Does Lucid prevent manual sleep?**
+
 The power assertion only blocks *idle* sleep, so choosing Sleep still works. With lid-shut
 support on, Lucid sets macOS's `SleepDisabled` flag while an agent is working, and that flag
 prevents the system from sleeping until Lucid clears it.
 
 **Is Lucid available for Apple Silicon?**
+
 Yes, and only Apple Silicon. The release is arm64 and needs macOS 14 or later.
 
 **Is the downloaded release notarised?**
+
 Yes. It's signed with a Developer ID, built with the hardened runtime, notarised by Apple,
 and the ticket is stapled to the app and the DMG.
 
 **Can I build Lucid from source?**
-Yes. See [Build from source](#build-from-source).
+
+Yes, for free. See [Build from source](#build-from-source). The signed, notarised build is
+the paid download on Gumroad.
 
 ## Support
 
@@ -445,9 +453,8 @@ open build/Lucid.app
 A local build is ad-hoc signed, which is fine on the Mac that built it. The app icon is
 generated from code by `tools/wordmark.swift`, so there's no asset catalog.
 
-Release builds are additionally signed with a Developer ID and the hardened runtime, then
-notarised and stapled. That needs your own Apple Developer membership. A build from
-source works the same without it.
+The Gumroad release is additionally signed with a Developer ID and the hardened runtime,
+then notarised and stapled. A local build works the same without any of that.
 
 ### Test and debug
 
